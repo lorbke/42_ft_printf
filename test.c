@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 13:07:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/05/05 17:16:06 by lorbke           ###   ########.fr       */
+/*   Created: 2022/05/20 11:06:10 by lorbke            #+#    #+#             */
+/*   Updated: 2022/08/29 16:06:29 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	main(void)
 {
-	size_t	i;
-	size_t	len;
+	char *format = "ddd";
+	int	i = 423498;
+	// int	i2 = 1111111111;
 
-	len = ft_strlen(src);
-	if (dstsize == 0)
-		return (len);
-	i = 0;
-	while (src[i] != 0 && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = 0;
-	return (len);
+	printf(" |%i\n", ft_printf("%i, %s", i, format));
+	printf(" |%i\n", printf("%i, %s", i, format));
+	return (0);
 }

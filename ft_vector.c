@@ -6,15 +6,16 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 11:24:26 by lorbke            #+#    #+#             */
-/*   Updated: 2022/05/18 21:03:29 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/08/29 18:22:13 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // whole reallocf function is shitty
-static void	*ft_reallocf(void *ptr, size_t size)
+static void	*ft_realloc_ftprintf(void *ptr, size_t size, size_t size_src)
 {
+	// write(1, "a", 1);
 	void	*ptr_cpy;
 
 	if (ptr == NULL)
@@ -24,10 +25,10 @@ static void	*ft_reallocf(void *ptr, size_t size)
 		free(ptr);
 		return (NULL);
 	}
-	ptr_cpy = (void *)malloc(size);
+	ptr_cpy = (void *)malloc(sizeof(char) * size);
 	if (ptr_cpy == NULL)
 		return (NULL);
-	ft_memmove(ptr_cpy, ptr, size);
+	ptr_cpy = ft_memmove(ptr_cpy, ptr, size_src);
 	free(ptr);
 	return (ptr_cpy);
 }
@@ -44,7 +45,7 @@ void	ft_vector_push_back(t_vector *vector, char c, int n)
 	if (vector->temp_len + n >= vector->len)
 	{
 		vector->len += n + 100;
-		vector->output = ft_reallocf(vector->output, vector->len);
+		vector->output = ft_realloc_ftprintf(vector->output, vector->len, vector->temp_len);
 	}
 	while (n > 0)
 	{

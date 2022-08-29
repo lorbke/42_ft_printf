@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 14:55:15 by lorbke            #+#    #+#             */
-/*   Updated: 2022/05/18 20:42:29 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/08/29 18:05:52 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	ft_mods(t_vector *vector, t_mods *mods, long int n)
 		ft_vector_push_back(vector, ' ', 1 - mods->sign);
 		ft_vector_push_back(vector, ' ', mods->field - 1 - mods->nbr_len);
 	}
-	if (mods->right == 0)
+	if (mods->right == 0 && mods->field >= mods->nbr_len)
 		ft_vector_push_back(vector, mods->field_char, mods->field
 			- mods->nbr_len);
 	if (mods->ptr == 1)
@@ -59,6 +59,7 @@ static void	ft_mods(t_vector *vector, t_mods *mods, long int n)
 		ft_vector_push_back(vector, '0', 1);
 		ft_vector_push_back(vector, 'x', 1);
 	}
+	// printf("nbr_len: %i\n", mods->field);
 }
 
 static void	ft_mods_precision(t_vector *vector, t_mods *mods, long int n)
@@ -110,4 +111,5 @@ void	ft_itoa_printf(t_vector *vector, t_mods *mods, long int n)
 		n = ft_putsign(vector, mods, n);
 		ft_printnbr_base(vector, mods, n);
 	}
+	// printf("nbr_len: %i\n", mods->nbr_len);
 }

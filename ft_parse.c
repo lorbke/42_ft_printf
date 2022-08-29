@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 14:53:45 by lorbke            #+#    #+#             */
-/*   Updated: 2022/05/18 20:46:57 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/05/20 12:29:03 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	ft_convert(t_frame *frame, t_mods *mods, t_vector *vector, int i)
 	else if (frame->format[i] == 'X')
 		ft_itoa_printf(vector, mods, va_arg(frame->arg, unsigned int));
 	else if (frame->format[i] == '%')
-		ft_vector_push_back(vector, '%', 1);
+		ft_printchar(vector, mods, '%');
 	if (mods->right == 1)
 		ft_vector_push_back(vector, ' ', mods->field
 			- (ft_vector_get_len(vector) - temp));
