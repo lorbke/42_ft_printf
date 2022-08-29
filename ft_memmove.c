@@ -12,41 +12,29 @@
 
 #include "ft_printf.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	i;
 
-	if (dst == NULL && src == NULL && n > 0)
+	if (dst == NULL && src == NULL && len > 0)
 		return (NULL);
 	i = 0;
-	while (i < n)
+	if (dst < src)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
+		while (i < len)
+		{
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
+	}
+	else
+	{
+		i = len;
+		while (i > 0)
+		{
+			((unsigned char *)dst)[i - 1] = ((unsigned char *)src)[i - 1];
+			i--;
+		}
 	}
 	return (dst);
-}
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
-	if (d < s)
-	{
-		ft_memcpy(dest, src, n);
-		return (dest);
-	}
-	d += n - 1;
-	s += n - 1;
-	while (n)
-	{
-		*d = *s;
-		d--;
-		s--;
-		n--;
-	}
-	return (dest);
 }
